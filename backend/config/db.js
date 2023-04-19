@@ -11,6 +11,7 @@ const mongoDB = process.env.MONGO_DB_URL
 // Wait for database to connect, logging an error if there is a problem 
 connectDb().catch(err => console.log(err));
 async function connectDb() {
+  console.log(mongoDB)
   await mongoose.connect(mongoDB, { dbName: "Lab1" });
 }
 
