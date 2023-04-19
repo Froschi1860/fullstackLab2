@@ -2,7 +2,7 @@ const express = require("express")
 const path = require("path")
 const dotenv = require("dotenv").config()
 const cors = require("cors")
-const { connectDb } = require("./backend/config/db")
+const { connectDb } = require(path.join(__dirname, "/backend/config/db"))
 
 connectDb()
 const app = express()
@@ -13,7 +13,7 @@ app.use(cors({ origin: '*' }))
 app.use(express.static(__dirname + "/frontend"))
 
 // Routing
-app.use("/api/albums", require("./backend/routes/albumRoute"))
+app.use("/api/albums", require(path.join(__dirname, "/backend/routes/albumRoute")))
 
 // Serve index.html
 app.get("/", (req, res) => {

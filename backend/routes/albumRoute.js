@@ -1,5 +1,6 @@
 const express = require("express")
-const { getAllAlbums, getAlbumByTitle, createAlbum, updateAlbum, deleteAlbum } = require("../controller/AlbumController")
+const path = require("path")
+const { getAllAlbums, getAlbumByTitle, createAlbum, updateAlbum, deleteAlbum } = require(path.join(__dirname, "/../controller/AlbumController"))
 
 
 const router = express.Router()

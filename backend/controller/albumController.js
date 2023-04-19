@@ -1,5 +1,6 @@
-const { Album } = require("../models/albumModel")
-const { verifyAlbum } = require("../util/verify")
+const path = require("path")
+const { Album } = require(path.join(__dirname, "/../models/albumModel"))
+const { verifyAlbum } = require(path.join(__dirname, "/../util/verify"))
 
 // @desc    Retrieve all albums from database
 // @source  GET /api/albums/
