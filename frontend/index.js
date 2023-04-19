@@ -1,4 +1,3 @@
-const port = 3000
 let updateId
 
 function start() {
@@ -10,12 +9,12 @@ function start() {
 }
 
 async function fetchAllAlbums() {
-  return await (await fetch(`http://localhost:${port}/api/albums`)).json()
+  return await (await fetch(`/api/albums`)).json()
 }
 
 async function createAlbum() {
   let newAlbum = buildAlbumJson()
-  let created = await fetch(`http://localhost:${port}/api/albums/`, {
+  let created = await fetch(`/api/albums/`, {
     method: "POST",
     headers: { "content-type": "application/json" },
     body: JSON.stringify(newAlbum)
@@ -29,7 +28,7 @@ async function createAlbum() {
 
 async function updateAlbum() {
   let updatedAlbum = buildAlbumJson()
-  let updated = await fetch(`http://localhost:${port}/api/albums/${updateId}`, {
+  let updated = await fetch(`/api/albums/${updateId}`, {
     method: "PUT",
     headers: { "content-type": "application/json" },
     body: JSON.stringify(updatedAlbum)
@@ -42,7 +41,7 @@ async function updateAlbum() {
 }
 
 async function deleteAlbum(id) {
-  let deleted = await fetch(`http://localhost:${port}/api/albums/${id}`, {
+  let deleted = await fetch(`/api/albums/${id}`, {
     method: "DELETE"
   })
   if (deleted.status === 404) return window.alert("The album does not exist.")
@@ -96,7 +95,7 @@ function enableUpdateBtns() {
     btn.addEventListener("click", async e => {
       updateId = btn.getAttribute("album-id")
       let albumTitle = document.getElementById(updateId).textContent
-      let album = await ((await fetch(`http://localhost:${port}/api/albums/${albumTitle}`)).json())
+      let album = await ((await fetch(`/api/albums/${albumTitle}`)).json())
       if (Array.isArray(album)) album = album.find(al => al._id === updateId)
       document.getElementById("updateAlbum").style.display = "inline-block"
       if (album) {
